@@ -1,0 +1,19 @@
+database:
+  user: postgres
+  password: 2020
+  host: host.docker.internal
+  port: 5432
+  dbname: crash_currency
+  sslmode: disable
+
+server:
+  host: 0.0.0.0
+  port: 9002
+
+logger:
+  encoding: json
+  level: info
+  outputPaths:
+    - stdout
+  errorOutputPaths:
+    - stderr

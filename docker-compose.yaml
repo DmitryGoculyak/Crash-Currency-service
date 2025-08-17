@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    container_name: go_currency_app
+    ports:
+      - "9000:9000"
+    depends_on:
+      - db
+    volumes:
+      - ./config.yaml:/root/config.yaml
+    working_dir: /root
+    environment:
+      - CONFIG_PATH=/root/config.yaml
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    container_name: postgres_currency_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 2020
+      POSTGRES_DB: crash_currency
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
