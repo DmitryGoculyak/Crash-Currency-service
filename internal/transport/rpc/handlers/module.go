@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"Crash-Currency-service/pkg/proto"
+	proto "Crash-Currency-service/pkg/proto"
 	"go.uber.org/fx"
 )
 
