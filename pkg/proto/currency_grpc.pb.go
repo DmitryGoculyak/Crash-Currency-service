@@ -29,7 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CurrencyServiceClient interface {
 	CreateCurrency(ctx context.Context, in *CreateCurrencyRequest, opts ...grpc.CallOption) (*CurrencyResponse, error)
-	GetCurrencies(ctx context.Context, in *GetCurrenciesRequest, opts ...grpc.CallOption) (*GetCurrencyResponse, error)
+	GetCurrencies(ctx context.Context, in *GetCurrenciesRequest, opts ...grpc.CallOption) (*CurrencyResponse, error)
 	GetListCurrencies(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListCurrenciesResponse, error)
 }
 
@@ -51,9 +51,9 @@ func (c *currencyServiceClient) CreateCurrency(ctx context.Context, in *CreateCu
 	return out, nil
 }
 
-func (c *currencyServiceClient) GetCurrencies(ctx context.Context, in *GetCurrenciesRequest, opts ...grpc.CallOption) (*GetCurrencyResponse, error) {
+func (c *currencyServiceClient) GetCurrencies(ctx context.Context, in *GetCurrenciesRequest, opts ...grpc.CallOption) (*CurrencyResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCurrencyResponse)
+	out := new(CurrencyResponse)
 	err := c.cc.Invoke(ctx, CurrencyService_GetCurrencies_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -76,7 +76,7 @@ func (c *currencyServiceClient) GetListCurrencies(ctx context.Context, in *Empty
 // for forward compatibility.
 type CurrencyServiceServer interface {
 	CreateCurrency(context.Context, *CreateCurrencyRequest) (*CurrencyResponse, error)
-	GetCurrencies(context.Context, *GetCurrenciesRequest) (*GetCurrencyResponse, error)
+	GetCurrencies(context.Context, *GetCurrenciesRequest) (*CurrencyResponse, error)
 	GetListCurrencies(context.Context, *Empty) (*ListCurrenciesResponse, error)
 	mustEmbedUnimplementedCurrencyServiceServer()
 }
@@ -91,7 +91,7 @@ type UnimplementedCurrencyServiceServer struct{}
 func (UnimplementedCurrencyServiceServer) CreateCurrency(context.Context, *CreateCurrencyRequest) (*CurrencyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCurrency not implemented")
 }
-func (UnimplementedCurrencyServiceServer) GetCurrencies(context.Context, *GetCurrenciesRequest) (*GetCurrencyResponse, error) {
+func (UnimplementedCurrencyServiceServer) GetCurrencies(context.Context, *GetCurrenciesRequest) (*CurrencyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCurrencies not implemented")
 }
 func (UnimplementedCurrencyServiceServer) GetListCurrencies(context.Context, *Empty) (*ListCurrenciesResponse, error) {

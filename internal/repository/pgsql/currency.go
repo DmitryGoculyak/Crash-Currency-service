@@ -35,7 +35,7 @@ func (r *CurrencyRepo) GetCurrencyByCode(ctx context.Context, code string) (*ent
 	return &getCurrencyByCode, nil
 }
 
-func (r *CurrencyRepo) GetAllCreateCurrencies(ctx context.Context) ([]entities.Currency, error) {
+func (r *CurrencyRepo) GetAllCurrencies(ctx context.Context) ([]entities.Currency, error) {
 	var currenciesList []entities.Currency
 	err := r.db.SelectContext(ctx, &currenciesList, "SELECT * FROM currencies")
 	if err != nil {

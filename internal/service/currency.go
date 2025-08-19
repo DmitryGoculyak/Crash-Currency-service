@@ -9,7 +9,7 @@ import (
 type CurrencyServiceServer interface {
 	CreateCurrency(ctx context.Context, code, name string) (*entities.Currency, error)
 	GetCurrencyByCode(ctx context.Context, code string) (*entities.Currency, error)
-	GetAllCreateCurrencies(ctx context.Context) ([]entities.Currency, error)
+	GetAllCurrencies(ctx context.Context) ([]entities.Currency, error)
 }
 
 type CurrencyService struct {
@@ -28,6 +28,6 @@ func (s *CurrencyService) GetCurrencyByCode(ctx context.Context, code string) (*
 	return s.repo.GetCurrencyByCode(ctx, code)
 }
 
-func (s *CurrencyService) GetAllCreateCurrencies(ctx context.Context) ([]entities.Currency, error) {
-	return s.repo.GetAllCreateCurrencies(ctx)
+func (s *CurrencyService) GetAllCurrencies(ctx context.Context) ([]entities.Currency, error) {
+	return s.repo.GetAllCurrencies(ctx)
 }
