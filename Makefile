@@ -18,7 +18,7 @@ build: deps
 	go build -o $(BUILD_DIR)/$(APP_NAME) ./cmd/main.go
 
 # Запуск приложения (без Docker)
-run: deps
+run:
 	go run cmd/main.go
 
 # Применить миграции
